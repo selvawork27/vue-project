@@ -1,3 +1,3 @@
 <template>
-    <h1>Footer</h1>
+    <h1>End DogHouse, Thank You!.</h1>
 </template>

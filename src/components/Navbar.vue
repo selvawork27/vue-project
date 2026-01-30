@@ -1,3 +1,3 @@
 <template>
-    <h1>Navbar</h1>
+    <h1>Welcome to DogHouse!</h1>
 </template>

@@ -1,5 +1,5 @@
 <script setup>
-import { NCard, NButton } from 'naive-ui'
+import { NCard, NButton, } from 'naive-ui'
 const props=defineProps({
     dog:Object
 })
@@ -13,6 +13,12 @@ const handleRemove=()=>{
 </script>
 <template>
   <n-card bordered="true" :title="dog.attributes.name" hoverable>
+    <template #header-extra>
+      <h1>{{ dog.type }}</h1>
+    </template>
+    <template #default>
+        <p>{{ dog.attributes.description }}</p>
+    </template>
     <template #footer>
       <n-button type="error" @click="handleRemove">
         Remove {{ dog.attributes.name }}
