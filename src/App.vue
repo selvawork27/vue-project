@@ -1,35 +1,41 @@
 <script setup>
 import { onMounted, ref } from 'vue';
 import Navbar from './components/Navbar.vue';
-import Usercard from './components/Usercard.vue';
-const users=ref([])
-const us=ref([
-  {
-    id:1,
-    name:"selva",
-  age:21
-  },
-  {
-    id:2,
-    name:"kumar",
-    age:22
-  }
-])
+import DogsCardcard from './components/DogsCard.vue';
+import Footer from './components/Footer.vue';
+const dogs=ref([]);
+const fetchDogs=async()=>{
+  const response=await fetch("https://dogapi.dog/api/v2/breeds");
+  const data=await response.json()
+  dogs.value=data.data;
+};
+
 onMounted(async()=>{
-  users.value=us.value
+  fetchDogs();
 })
+
 const removerUser=(id)=>{
-  users.value=users.value.filter(u=>u.id!==id)
+  dogs.value=dogs.value.filter(d=>d.id!==id)
 }
 
 </script>
 
 <template>
   <Navbar/>
-  <h1>User Card</h1>
-  <Usercard v-for="user in users"
-  :user="user"
-  :key="user.id"
+  <h1>Dogs Card</h1>
+  <div class="dogsCard">
+  <DogsCardcard v-for="dog in dogs"
+  :dog="dog"
+  :key="dog.id"
   @remove="removerUser"/>
-
+  </div>
+  <Footer/>
 </template>
+
+<style scoped>
+.dogsCard{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+</style>
