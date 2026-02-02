@@ -10,7 +10,7 @@ const handleRemove=()=>{
     emit('remove',props.dog.id)
 }
 
-</script>
+</script> 
 <template>
   <n-card bordered="true" :title="dog.attributes.name" hoverable>
     <template #header-extra>
